@@ -1,0 +1,31 @@
+
+
+
+
+
+
+
+
+
+    <h2>Эпизоды</h2>
+    <ul>
+        {% for key, value in data.items %}
+            <li>
+                <strong>{{ key }}:</strong> {{ item.total }}
+                <ul>
+                    {% for episode, item in value.items %}
+                        <li>
+                            <strong>{{ episode }}:</strong> {{ item.total }} orundum
+                            <ul>
+                                <li><strong>Normal:</strong> {{ item.normal }}</li>
+                                <li><strong>Chelenge:</strong> {{ item.chelenge }}</li>
+                                <li><strong>Ex:</strong> {{ item.ex }}</li>
+                                <li><strong>Clear:</strong> {{ item.clear }}</li>
+                            </ul>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+

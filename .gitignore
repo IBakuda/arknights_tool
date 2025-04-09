@@ -1,0 +1,40 @@
+# Основные файлы Django
+*.log
+*.pot
+*.pyc
+*.pyo
+__pycache__/
+db.sqlite3
+*.sqlite3
+
+# Секретные ключи и конфигурационные файлы
+*.env
+.env/
+*.ini
+*.cfg
+*.json
+*.yaml
+
+# Папка с медиапользователями (например, изображения)
+media/
+
+# Папка с файлами, генерируемыми статическими файлами Django
+static/
+
+# Конфигурация IDE (например, PyCharm)
+.idea/
+
+# Конфигурация редакторов
+.vscode/
+
+# Системные файлы (например, для macOS, Linux)
+.DS_Store
+Thumbs.db
+
+# Папки для виртуальных окружений
+venv/
+.env/
+.venv/
+
+# Файлы для Docker (если используете Docker)
+docker-compose.override.yml
