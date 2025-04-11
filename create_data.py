@@ -96,7 +96,7 @@ def update_data():
             total_data['Episodes'][key] = {'total': int(o),
                                            'normal': 0,
                                            'chelenge': 0,
-                                           'ex': 0,
+                                           'extra': 0,
                                            'clear': False}
 
     for iteration in generator_side_stori_episodes():
@@ -127,8 +127,8 @@ def update_data():
             key = iteration.split('/')[-1]
             total_data['Side_story'][key] = {'total': int(o),
                                              'normal': 0,
-                                             'chelenge': 0,
                                              'ex': 0,
+                                             's_mo': 0,
                                              'clear': False}
 
     for iteration in generator_intermezi():
@@ -147,8 +147,8 @@ def update_data():
             key = iteration.split('/')[-1]
             total_data['Intermezzi'][key] = {'total': int(o),
                                              'normal': 0,
-                                             'chelenge': 0,
                                              'ex': 0,
+                                             's_mo': 0,
                                              'clear': False}
 
     # Записываем в файл "data.json"
