@@ -1,4 +1,4 @@
-already = {'orundum': 102500, 'originite': 219, 'headhuntingPermit': 48}
+already = {'orundum': 108100, 'originite': 211, 'headhuntingPermit': 51}
 
 # Intermezzi
 Intermezzi = {
@@ -76,8 +76,6 @@ print(f'already have: {already['orundum']} + '
 print(round(((already['orundum'] + already['originite'] * 180) / 600), 2) + already['headhuntingPermit'])
 
 print('-------------------------------')
-
-
 
 
 

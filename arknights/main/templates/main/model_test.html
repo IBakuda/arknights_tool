@@ -4,8 +4,9 @@
 
 {% block content %}
 
-{% for item in data %}
-    {{ item.story_type }} {{ item.name }} {{ item.total }} {{ item.normal }} {{ item.challenge }} {{ item.extra }} {{ item.clear }}<br>
-{% endfor %}
+    {% for item in data %}
+        {{ item.story_type }} {{ item.name }} {{ item.total }} {{ item.normal }} {{ item.challenge }} {{ item.extra }} {{ item.clear }}<br>
+    {% endfor %}
+
 
 {% endblock content %}
