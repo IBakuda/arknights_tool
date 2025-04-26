@@ -1,41 +1,42 @@
 {% extends 'arknights/base.html' %}
-
-
+{% load static %}
 
 {% block content %}
-
 <h2>Редактировать сюжеты</h2>
 
-<table border="1" cellpadding="8">
-    <tr>
-        <th>Название</th>
-        <th>Тип</th>
-        <th>Total</th>
-        <th>Normal</th>
-        <th>Challenge</th>
-        <th>Extra</th>
-        <th>Clear</th>
-        <th>Действие</th>
-    </tr>
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
 
-    {% for item, form in form_list %}
-    <tr>
-        <form method="post">
-            {% csrf_token %}
-            <td>{{ form.name }}</td>
-            <td>{{ form.story_type }}</td>
-            <td>{{ form.total }}</td>
-            <td>{{ form.normal }}</td>
-            <td>{{ form.challenge }}</td>
-            <td>{{ form.extra }}</td>
-            <td>{{ form.clear }}</td>
-            <td>
-                <input type="hidden" name="id" value="{{ item.id }}">
-                <button type="submit">💾 Сохранить</button>
-            </td>
-        </form>
-    </tr>
-    {% endfor %}
-</table>
+    <table border="1" cellpadding="8">
+        <tr>
+            <th>Название</th>
+            <th>Тип</th>
+            <th>Total</th>
+            <th>Normal</th>
+            <th>Challenge</th>
+            <th>Extra</th>
+            <th>Clear</th>
+        </tr>
+
+        {% for form in formset %}
+            <tr>
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                <td>{{ form.name }}</td>
+                <td>{{ form.story_type }}</td>
+                <td>{{ form.total }}</td>
+                <td>{{ form.normal }}</td>
+                <td>{{ form.challenge }}</td>
+                <td>{{ form.extra }}</td>
+                <td>{{ form.clear }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <button type="submit">💾 Сохранить все изменения</button>
+</form>
 
 {% endblock %}

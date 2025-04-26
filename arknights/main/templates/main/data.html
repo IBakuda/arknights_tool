@@ -3,23 +3,18 @@
 
     <h2>Эпизоды</h2>
     <ul>
-        {% for key, value in data.items %}
-            <li>
-                <strong>{{ key }}:</strong> {{ item.total }}
+        {% for value in data %}
+            <ul>
+                <strong>{{value.story_type}}</strong>
                 <ul>
-                    {% for episode, item in value.items %}
-                        <li>
-                            <strong>{{ episode }}:</strong> {{ item.total }} orundum
-                            <ul>
-                                <li><strong>Normal:</strong> {{ item.normal }}</li>
-                                <li><strong>Chelenge:</strong> {{ item.chelenge }}</li>
-                                <li><strong>Ex:</strong> {{ item.ex }}</li>
-                                <li><strong>Clear:</strong> {{ item.clear }}</li>
-                            </ul>
-                        </li>
-                    {% endfor %}
+                    <strong>{{ value.name }}</strong> = {{value.total}}
+                    <ul>
+                        <li><strong>normal</strong>  {{ value.normal }}</li>
+                        <li><strong>challenge</strong>  {{ value.challenge }}</li>
+                        <li><strong>clear</strong>  {{ value.clear }}</li>
+                    </ul>
                 </ul>
-            </li>
+            </ul>
         {% endfor %}
     </ul>
 

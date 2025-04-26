@@ -4,5 +4,5 @@
     {% for value in player %}
         <p>Player {{value.name}}: orundum <img src="{% static 'main/img/22px-Orundum.webp' %}" alt=""> = {{value.orundum}}, originium <img src="{% static 'main/img/18px-Originite_Prime_icon.webp' %}" alt=""> = {{value.originium}}, tickets = {{value.tickets}}, total = {{total}}</p>
     {% endfor %}
-<a href="{% url 'playeredit' %}">редактировать</a>
+<a href="{% url 'playeredit' %}">редактировать</a><br><br><br>
 <!--{% endblock Player %}-->

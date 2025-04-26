@@ -1,5 +1,5 @@
+from django.forms import modelformset_factory
 from django.shortcuts import render, redirect
-from . import data_fun
 from .models import StoryCost, Player
 from .logic import model_fun
 from .forms import StoryCostForm, PlayerForm
@@ -7,7 +7,7 @@ from .forms import StoryCostForm, PlayerForm
 
 # Create your views here.
 def index(request):
-    data = data_fun.load_data()
+    data = StoryCost.objects.all().order_by('id', 'story_type')
     player = Player.objects.all()
     me = Player.objects.get(id=1)  # или по username и т.д.
 
@@ -31,18 +31,16 @@ def create_model_data(request):
 
 
 def edit_stories(request):
-    stories = StoryCost.objects.all()
+    StoryCostFormSet = modelformset_factory(StoryCost, form=StoryCostForm, extra=0)
 
     if request.method == 'POST':
-        instance = StoryCost.objects.get(pk=request.POST.get('id'))
-        form = StoryCostForm(request.POST, instance=instance)
-        if form.is_valid():
-            form.save()
-            return redirect('f')  # замените на ваш URL
+        formset = StoryCostFormSet(request.POST)
+        if formset.is_valid():
+            formset.save()
+            return redirect('index')  # куда перекидывать после сохранения
 
-    # передаём формы вместе с объектами
-    form_list = [(item, StoryCostForm(instance=item)) for item in stories]
-    return render(request, 'main/forms_for_model.html', {'form_list': form_list, 'data': stories})
+    formset = StoryCostFormSet(queryset=StoryCost.objects.all())
+    return render(request, 'main/forms_for_model.html', {'formset': formset})
 
 
 def edit_player(request):
