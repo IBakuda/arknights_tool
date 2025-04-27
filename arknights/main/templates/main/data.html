@@ -1,7 +1,10 @@
 
-
+{% load static %}
 
     <h2>Эпизоды</h2>
+
+    <h4>Можно получить {{last}} originate <img src="{% static 'main/img/18px-Originite_Prime_icon.webp' %}" alt=""></h4>
+
     <ul>
         {% for value in data %}
             <ul>

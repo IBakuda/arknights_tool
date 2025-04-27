@@ -58,6 +58,8 @@ MainTheme = {'m0': 29 - (11 * 2 + 7),           # 29 clear
              }
 mainTheme = sum(MainTheme.values())
 print(f"mainTheme = {mainTheme}")
+for item in MainTheme.values():
+    print(item)
 
 last = (mainTheme + sideStory + intermezzi)
 print(f"all that's left is to get {last}: in orundum = {last * 180}")

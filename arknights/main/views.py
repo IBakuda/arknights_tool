@@ -21,7 +21,13 @@ def index(request):
              + int(me.tickets) * 600
             ) / 600, 2)
 
-    content = {'data': data, 'player': player, 'total': total}
+    all_originate = sum(item.total for item in data)
+    normal = sum(item.normal for item in data)
+    challenge = sum(item.challenge for item in data)
+
+    last = all_originate - normal - challenge
+
+    content = {'data': data, 'player': player, 'total': total, 'last': last}
     return render(request, 'main/index.html', content)
 
 
