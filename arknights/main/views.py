@@ -3,6 +3,9 @@ from django.shortcuts import render, redirect
 from .models import StoryCost, Player
 from .logic import model_fun
 from .forms import StoryCostForm, PlayerForm
+from rest_framework import generics
+
+from .serialaizers import StoryCostSerialaizer
 
 
 # Create your views here.
@@ -56,3 +59,8 @@ def edit_player(request):
 
     form_list = [(item, PlayerForm(instance=item)) for item in player]
     return render(request, 'main/player_form.html', {'form_list': form_list, 'player': player})
+
+
+class StoryCostAPIView(generics.ListAPIView):
+    queryset = StoryCost.objects.all()
+    serializer_class = StoryCostSerialaizer
