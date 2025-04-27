@@ -8,6 +8,7 @@ from .forms import StoryCostForm, PlayerForm
 # Create your views here.
 def index(request):
     data = StoryCost.objects.all().order_by('id', 'story_type')
+    model_fun.chapter_clear(data)
     player = Player.objects.all()
     me = Player.objects.get(id=1)  # или по username и т.д.
 

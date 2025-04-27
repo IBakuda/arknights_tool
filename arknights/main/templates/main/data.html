@@ -8,11 +8,18 @@
                 <strong>{{value.story_type}}</strong>
                 <ul>
                     <strong>{{ value.name }}</strong> = {{value.total}}
+
+                    {% if value.clear == True %}
                     <ul>
-                        <li><strong>normal</strong>  {{ value.normal }}</li>
-                        <li><strong>challenge</strong>  {{ value.challenge }}</li>
-                        <li><strong>clear</strong>  {{ value.clear }}</li>
+                        <li><strong>CLEAR</strong></li>
                     </ul>
+                    {% else %}
+                        <ul>
+                            <li><strong>normal</strong>  {{ value.normal }}</li>
+                            <li><strong>challenge</strong>  {{ value.challenge }}</li>
+                            <li><strong>clear</strong>  {{ value.clear }}</li>
+                        </ul>
+                    {% endif %}
                 </ul>
             </ul>
         {% endfor %}

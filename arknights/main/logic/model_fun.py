@@ -204,3 +204,22 @@ def delete():
             item.delete()
         else:
             continue
+
+
+def chapter_clear(data):
+    data = data
+    for value in data:
+        # id = value.id
+        # total = value.total
+        # normal = value.normal
+        # challenge = value.challenge
+        # clear = value.clear
+        if value.clear:
+            value.challenge = 8
+            value.normal = value.total - value.challenge
+
+        if value.challenge + value.normal == value.total:
+            value.clear = True
+        else:
+            value.clear = False
+        value.save()
