@@ -1,0 +1,79 @@
+<style>
+  .checkbox-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .checkbox-button {
+    position: relative;
+  }
+
+  .checkbox-button input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-button label {
+    padding: 10px 16px;
+    border: 2px solid #007bff;
+    border-radius: 6px;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    user-select: none;
+  }
+
+  .checkbox-button input[type="checkbox"]:checked + label {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .checkbox-button label:hover {
+    background-color: #e6f0ff;
+  }
+
+  .tag-section {
+    margin-bottom: 25px;
+  }
+
+  .tag-section h4 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 18px;
+  }
+</style>
+
+<form method="post">
+  {% csrf_token %}
+
+  <!-- Text input -->
+  <div class="tag-section">
+    {{ form.custom_input.label_tag }}
+    {{ form.custom_input }}
+  </div>
+
+  {% for section in [
+      ('Class', class_fields),
+      ('Position', position_fields),
+      ('Qualification', qualification_fields),
+      ('Affix', affix_fields),
+      ('Rarity', rarity_fields),
+  ] %}
+    <div class="tag-section">
+      <h4>{{ section.0 }}</h4>
+      <div class="checkbox-buttons">
+        {% for name in section.1 %}
+          <div class="checkbox-button">
+            {{ form[name] }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+
+  <button type="submit">Сохранить</button>
+</form>
+

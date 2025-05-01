@@ -1,0 +1,137 @@
+<style>
+  .checkbox-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .checkbox-button {
+    position: relative;
+  }
+
+  .checkbox-button input[type="checkbox"] {
+    display: none;
+  }
+
+  .checkbox-button label {
+    padding: 10px 20px;
+    border: 2px solid #007bff;
+    border-radius: 6px;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    user-select: none;
+  }
+
+  .checkbox-button input[type="checkbox"]:checked + label {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .checkbox-button label:hover {
+    background-color: #e6f0ff;
+  }
+</style>
+
+<form method="post">
+  {% csrf_token %}
+
+  <!-- Поле ввода -->
+  <div>
+    {{ form.custom_input.label_tag }}
+    {{ form.custom_input }}
+  </div>
+
+  <!-- Кнопки-чекбоксы -->
+  <br>
+  <div class="tag-section">
+    <div class="checkbox-buttons">
+      <h4>class_fields</h4>
+    {% for field in form %}
+      {% if field.name in class_fields and field.name != "custom_input" %}
+        <div class="checkbox-button">
+          <input type="checkbox"
+                 id="{{ field.id_for_label }}"
+                 name="{{ field.name }}"
+                 {% if field.value %}checked{% endif %}>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+    <br>
+  <div class="tag-section">
+    <div class="checkbox-buttons">
+      <h4>position_fields</h4>
+    {% for field in form %}
+      {% if field.name in position_fields and field.name != "custom_input" %}
+        <div class="checkbox-button">
+          <input type="checkbox"
+                 id="{{ field.id_for_label }}"
+                 name="{{ field.name }}"
+                 {% if field.value %}checked{% endif %}>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+    <br>
+  <div class="tag-section">
+    <div class="checkbox-buttons">
+      <h4>qualification_fields</h4>
+    {% for field in form %}
+      {% if field.name in qualification_fields and field.name != "custom_input" %}
+        <div class="checkbox-button">
+          <input type="checkbox"
+                 id="{{ field.id_for_label }}"
+                 name="{{ field.name }}"
+                 {% if field.value %}checked{% endif %}>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+    <br>
+  <div class="tag-section">
+    <div class="checkbox-buttons">
+      <h4>affix_fields</h4>
+    {% for field in form %}
+      {% if field.name in affix_fields and field.name != "custom_input" %}
+        <div class="checkbox-button">
+          <input type="checkbox"
+                 id="{{ field.id_for_label }}"
+                 name="{{ field.name }}"
+                 {% if field.value %}checked{% endif %}>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+
+    <br>
+  <div class="tag-section">
+    <div class="checkbox-buttons">
+      <h4>rarity_fields</h4>
+    {% for field in form %}
+      {% if field.name in rarity_fields and field.name != "custom_input" %}
+        <div class="checkbox-button">
+          <input type="checkbox"
+                 id="{{ field.id_for_label }}"
+                 name="{{ field.name }}"
+                 {% if field.value %}checked{% endif %}>
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        </div>
+      {% endif %}
+    {% endfor %}
+    </div>
+  <button type="submit">Сохранить</button>
+</form>

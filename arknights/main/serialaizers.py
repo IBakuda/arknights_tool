@@ -8,3 +8,4 @@ class StoryCostSerialaizer(serializers.ModelSerializer):
     class Meta:
         model = StoryCost
         fields = '__all__'
+

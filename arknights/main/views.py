@@ -70,3 +70,5 @@ def edit_player(request):
 class StoryCostAPIView(generics.ListAPIView):
     queryset = StoryCost.objects.all()
     serializer_class = StoryCostSerialaizer
+
+

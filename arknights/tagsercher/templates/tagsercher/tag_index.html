@@ -1,0 +1,23 @@
+{% extends 'arknights/base.html' %}
+
+{% block content %}
+
+
+<nav>
+    <a href="{% url 'tagsercher' %}">home</a>
+    <a href="{% url 'addoperator' %}">addoperator</a>
+</nav>
+
+<br>
+
+
+{% block addoperator %}
+    {% include 'tagsercher/tag_input.html' %}
+{% endblock addoperator %}
+<br>
+
+{% include 'tagsercher/operators_show.html' %}
+
+
+
+{% endblock content %}
