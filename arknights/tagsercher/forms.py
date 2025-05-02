@@ -5,7 +5,7 @@ from .models import Operator
 
 class AddOperatorForm(forms.Form):
     name = forms.CharField(max_length=100)
-    tag = forms.CharField(max_length=100)
+    tag = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'style': 'width: 400px;'}))
     rarity = forms.ChoiceField(label="Редкость", choices=((1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"), (6, "6")))
 
 

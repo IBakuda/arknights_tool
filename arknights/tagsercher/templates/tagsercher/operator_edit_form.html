@@ -1,26 +1,30 @@
-<form method="POST">
-    {% csrf_token %}
-    {{ formset.management_form }}
-    <table border="1" cellpadding="8">
-        <tr>
-            <th>Имя</th>
-            <th>Теги</th>
-            <th>Редкость</th>
+{% extends 'tagsercher/tag_index.html' %}
 
-        </tr>
-
-        {% for form in formset %}
+{% block addoperator %}
+    <form method="POST">
+        {% csrf_token %}
+        {{ formset.management_form }}
+        <table border="1" cellpadding="8">
             <tr>
-                {% for hidden in form.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
+                <th>Имя</th>
+                <th>Теги</th>
+                <th>Редкость</th>
 
-                <td>{{ form.name }}</td>
-                <td>{{ form.tag }}</td>
-                <td>{{ form.rarity }}</td>
             </tr>
-        {% endfor %}
-    </table>
 
-    <button type="submit">💾 Сохранить все изменения</button>
-</form>
+            {% for form in formset %}
+                <tr>
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+
+                    <td>{{ form.name }}</td>
+                    <td>{{ form.tag }}</td>
+                    <td>{{ form.rarity }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+
+        <button type="submit">💾 Сохранить все изменения</button>
+    </form>
+{% endblock addoperator %}

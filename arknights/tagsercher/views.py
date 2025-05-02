@@ -75,7 +75,7 @@ def operator_edit_view(request):
 
     # получаем данные из модели
     operators = Operator.objects.all()
-    initial_data = [{'name': op.name, 'tag': op.tag} for op in operators]
+    initial_data = [{'name': op.name, 'tag': op.tag, 'rarity': op.rarity} for op in operators]
 
     if request.method == 'POST':
         formset = OperatorFormSet(request.POST)
