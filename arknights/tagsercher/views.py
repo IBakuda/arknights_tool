@@ -18,15 +18,16 @@ def tagsercher_view(request):
     full_matches = []
     partial_matches = []
 
-    for operator in Operator.objects.all():
-        operator_tags = {t.strip() for t in operator.tag.split(',')}
+    if tag:
+        for operator in Operator.objects.all():
+            operator_tags = {t.strip() for t in operator.tag.split(',')}
 
-        # Полное совпадение: все выбранные теги содержатся у оператора
-        if tag.issubset(operator_tags):
-            full_matches.append(operator)
-        # Частичное совпадение: хотя бы один тег совпадает
-        if tag & operator_tags:
-            partial_matches.append(operator)
+            # Полное совпадение: все выбранные теги содержатся у оператора
+            if tag.issubset(operator_tags):
+                full_matches.append(operator)
+            # Частичное совпадение: хотя бы один тег совпадает
+            if tag & operator_tags:
+                partial_matches.append(operator)
 
     form = TagChouseForm()
     context = {
