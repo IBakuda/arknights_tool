@@ -3,13 +3,14 @@
 
 
 
-{% for operator in operators %}
-
-
-            {{ operator.name }} --- {{ operator.tag }}
-<br>
-
-
+{% for operator in full_matches %}
+    {{ operator.name }} --- {{ operator.tag }}
+    <br>
 {% endfor %}
-
-
+<br>
+<br>
+<br>
+{% for operator in partial_matches %}
+    {{ operator.name }} --- {{ operator.tag }}
+    <br>
+{% endfor %}

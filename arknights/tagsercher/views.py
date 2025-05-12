@@ -15,24 +15,23 @@ def tagsercher_view(request):
 
     #tag = set(map(lambda item: item[0], filter(lambda item: item[1] == True, tag.items())))
     tag = {key for key, value in tag.items() if value}
-    print(tag)
-
-    filtered_operators = []
+    full_matches = []
+    partial_matches = []
 
     for operator in Operator.objects.all():
         operator_tags = {t.strip() for t in operator.tag.split(',')}
-        print(operator_tags)
 
-        # Если есть хотя бы один общий тег
+        # Полное совпадение: все выбранные теги содержатся у оператора
+        if tag.issubset(operator_tags):
+            full_matches.append(operator)
+        # Частичное совпадение: хотя бы один тег совпадает
         if tag & operator_tags:
-            filtered_operators.append(operator)
-
-    print(filtered_operators)
-
+            partial_matches.append(operator)
 
     form = TagChouseForm()
     context = {
-        'operators': filtered_operators,
+        'full_matches': full_matches,
+        'partial_matches': partial_matches,
         'form': form,
         'class_fields': ['guard', 'sniper', 'defender', 'medic', 'suporter', 'caster', 'specialist', 'vanguard'],
         'position_fields': ['melee', 'ranged'],
@@ -52,7 +51,7 @@ def add_operator_form_view(request):
             Operator.objects.create(name = form.cleaned_data['name'],
                                     tag = form.cleaned_data['tag'],
                                     rarity = form.cleaned_data['rarity'],)
-            return redirect('tagsercher')
+            return redirect('addoperator')
 
     form = AddOperatorForm()
 
@@ -69,6 +68,7 @@ def tag_chouse(request):
     form = TagChouseForm()
     print(form)
     return form
+
 
 def operator_edit_view(request):
     OperatorFormSet = formset_factory(AddOperatorForm, extra=0)
