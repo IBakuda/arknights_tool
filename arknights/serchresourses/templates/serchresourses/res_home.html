@@ -12,8 +12,116 @@
     </form>
 {% endblock operator_serch %}
 
-{{ data }}
+<br>
+<br>
 
+promotion_resourses
+
+{% for enum, promotion_res in data.promotion_resourses.items %}
+    <h4>Промоут № {{ enum }}</h4>
+    <ul>
+        {% for name, quantity in promotion_res.items %}
+            <li>{{ name }} --- {{ quantity }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+<br>
+<br>
+<br>
+
+skils_resourses
+
+
+<table border="1" cellspacing="0" cellpadding="8" style="width: 60%; border-collapse: collapse; margin-bottom: 20px;">
+
+    <tr>
+        <th style="width: 20%;">LVL</th>
+        <th style="width: 80%;">Resources</th>
+    </tr>
+    {% for enum, promotion_res in data.skils_resourses.items %}
+    {% if enum|add:0 >= 2 and enum|add:0 <= 7 %}
+        <tr>
+            <td>Skill lvl {{ enum }}</td>
+            <td>
+                <ul>
+                    {% for name, quantity in promotion_res.items %}
+                        <li>{{ name }} --- {{ quantity }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+    {% endif %}
+{% endfor %}
+<table border="1" cellspacing="0" cellpadding="8" style="width: 60%; border-collapse: collapse; margin-bottom: 20px;">
+  <tr>
+    <td>
+<ul>Skill lvl 8</ul>
+<br>
+<ul>Skill lvl 9</ul>
+<br>
+<ul>Skill lvl 10</ul>
+    </td>  <!-- Пустая первая колонка -->
+
+    {% comment %} Вторая колонка: уровни 8–10 {% endcomment %}
+    <td>
+      {% for enum, promotion_res in data.skils_resourses.items %}
+        {% if enum|add:0 >= 8 and enum|add:0 <= 10 %}
+          <ul>
+            {% for name, quantity in promotion_res.items %}
+              <li>{{ name }} — {{ quantity }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
+    </td>
+
+    {% comment %} Третья колонка: уровни 11–13 {% endcomment %}
+    <td>
+      {% for enum, promotion_res in data.skils_resourses.items %}
+        {% if enum|add:0 >= 11 and enum|add:0 <= 13 %}
+          <ul>
+            {% for name, quantity in promotion_res.items %}
+              <li>{{ name }} — {{ quantity }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
+    </td>
+
+    {% comment %} Четвёртая колонка: уровни 14–16 {% endcomment %}
+    <td>
+      {% for enum, promotion_res in data.skils_resourses.items %}
+        {% if enum|add:0 >= 14 and enum|add:0 <= 16 %}
+          <ul>
+            {% for name, quantity in promotion_res.items %}
+              <li>{{ name }} — {{ quantity }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endfor %}
+    </td>
+  </tr>
+</table>
+
+
+<br>
+<br>
+<br>
+
+modeules_resourses
+{% for enum, modeules_res in data.modeules_resourses.items %}
+    <h4>Промоут № {{ enum }}</h4>
+    <ul>
+        {% for name, quantity in modeules_res.items %}
+            <li>{{ name }} --- {{ quantity }}</li>
+        {% endfor %}
+    </ul>
+{% endfor %}
+
+{{ data.modeules_resourses }}
+
+<br>
 
 
 
