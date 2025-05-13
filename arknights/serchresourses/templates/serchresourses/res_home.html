@@ -30,6 +30,7 @@ promotion_resourses
 <br>
 <br>
 
+
 skils_resourses
 
 
@@ -105,21 +106,40 @@ skils_resourses
 </table>
 
 
+
 <br>
 <br>
 <br>
 
 modeules_resourses
-{% for enum, modeules_res in data.modeules_resourses.items %}
-    <h4>Промоут № {{ enum }}</h4>
-    <ul>
-        {% for name, quantity in modeules_res.items %}
-            <li>{{ name }} --- {{ quantity }}</li>
+<table border="1" cellspacing="0" cellpadding="6">
+    <thead>
+        <tr>
+            <th>Модуль №</th>
+            <th>Ресурсы</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for enum, modules_res in data.modeules_resourses.items %}
+            <tr>
+                <td>{{ enum }}</td>
+                <td>
+                    <ul>
+                        {% for item in modules_res.values %}
+                            {% for name, quantity in item.items %}
+                                {% if name == 'Module Data Block' %}
+                                    <br>
+                                {% endif%}
+                                <li> {{ name }} — {{ quantity }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
         {% endfor %}
-    </ul>
-{% endfor %}
+    </tbody>
+</table>
 
-{{ data.modeules_resourses }}
 
 <br>
 
