@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'main',
     'rest_framework',
     'tagsercher',
+    'serchresourses'
 ]
 
 MIDDLEWARE = [

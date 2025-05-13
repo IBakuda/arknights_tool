@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')),
     path('tagsercher/', include('tagsercher.urls')),
+    path('resorses/', include('serchresourses.urls')),
 ]
