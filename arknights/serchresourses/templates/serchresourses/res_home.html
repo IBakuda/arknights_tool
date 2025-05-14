@@ -21,7 +21,7 @@ promotion_resourses
     <h4>Промоут № {{ enum }}</h4>
     <ul>
         {% for name, quantity in promotion_res.items %}
-            <li>{{ name }} --- {{ quantity }}</li>
+            <li>{{ name }} <img src="{{ quantity.1 }}" alt=""> : {{ quantity.0 }}</li>
         {% endfor %}
     </ul>
 {% endfor %}
@@ -47,7 +47,7 @@ skils_resourses
             <td>
                 <ul>
                     {% for name, quantity in promotion_res.items %}
-                        <li>{{ name }} --- {{ quantity }}</li>
+                        <li>{{ name }} <img src="{{ quantity.1 }}" alt=""> : {{ quantity.0 }}</li>
                     {% endfor %}
                 </ul>
             </td>
@@ -58,9 +58,9 @@ skils_resourses
   <tr>
     <td>
 <ul>Skill lvl 8</ul>
-<br>
+<br><br><br><br><br><br><br>
 <ul>Skill lvl 9</ul>
-<br>
+<br><br><br><br><br><br><br>
 <ul>Skill lvl 10</ul>
     </td>  <!-- Пустая первая колонка -->
 
@@ -70,7 +70,10 @@ skils_resourses
         {% if enum|add:0 >= 8 and enum|add:0 <= 10 %}
           <ul>
             {% for name, quantity in promotion_res.items %}
-              <li>{{ name }} — {{ quantity }}</li>
+              {% if name == 'Skill Summary - 3' %}
+                <br><br><br>
+              {% endif %}
+              <li>{{ name }} <img src="{{ quantity.1 }}" alt=""> : {{ quantity.0 }}</li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -83,7 +86,10 @@ skils_resourses
         {% if enum|add:0 >= 11 and enum|add:0 <= 13 %}
           <ul>
             {% for name, quantity in promotion_res.items %}
-              <li>{{ name }} — {{ quantity }}</li>
+              {% if name == 'Skill Summary - 3' %}
+                <br><br><br>
+              {% endif %}
+              <li>{{ name }} <img src="{{ quantity.1 }}" alt=""> : {{ quantity.0 }}</li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -95,8 +101,12 @@ skils_resourses
       {% for enum, promotion_res in data.skils_resourses.items %}
         {% if enum|add:0 >= 14 and enum|add:0 <= 16 %}
           <ul>
+
             {% for name, quantity in promotion_res.items %}
-              <li>{{ name }} — {{ quantity }}</li>
+              {% if name == 'Skill Summary - 3' %}
+                <br><br><br>
+              {% endif %}
+              <li>{{ name }} <img src="{{ quantity.1 }}" alt=""> : {{ quantity.0 }}</li>
             {% endfor %}
           </ul>
         {% endif %}
@@ -130,7 +140,7 @@ modeules_resourses
                                 {% if name == 'Module Data Block' %}
                                     <br>
                                 {% endif%}
-                                <li> {{ name }} — {{ quantity }}</li>
+                                <li>{{ name }} <img src="{{ quantity.1 }}" alt=""> : {{ quantity.0 }}</li>
                             {% endfor %}
                         {% endfor %}
                     </ul>

@@ -1,7 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+from urllib.parse import urljoin
 
 def collect_data(resorse, en, w):
+    BASE_URL = 'https://arknights.wiki.gg/'
     output = {}
 
     for i, td in enumerate(resorse, start=en):
@@ -10,16 +12,24 @@ def collect_data(resorse, en, w):
             item = div.find('div', class_='item-tooltip')
             quantity_div = div.find('div', class_='quantity')
 
+
+
             if quantity_div and item:
 
                 item_found = item.get('data-name', 'Неизвестно')
                 quantity_found = quantity_div.text.strip()
+                img_tag = div.find('img', {'alt': lambda x: x and f'{item_found}.png' in x})
+                full_img_url = ''
+
+                if img_tag:
+                    relative_src = img_tag['src']
+                    full_img_url = urljoin(BASE_URL, relative_src)
 
                 if i not in output:
                     output[i] = {}
 
                     # Добавляем item: quantity
-                output[i][item_found] = quantity_found
+                output[i][item_found] = [quantity_found, full_img_url]
     return output
 
 
