@@ -12,8 +12,6 @@ def collect_data(resorse, en, w):
             item = div.find('div', class_='item-tooltip')
             quantity_div = div.find('div', class_='quantity')
 
-
-
             if quantity_div and item:
 
                 item_found = item.get('data-name', 'Неизвестно')
@@ -34,30 +32,32 @@ def collect_data(resorse, en, w):
 
 
 def serchoperator(name):
-    url = f'https://arknights.wiki.gg/wiki/{name}'
-    responce = requests.get(url)
-    soup = BeautifulSoup(responce.content, 'lxml')
+    try:
+        url = f'https://arknights.wiki.gg/wiki/{name}'
+        responce = requests.get(url)
+        soup = BeautifulSoup(responce.content, 'lxml')
 
-    promotion = soup.find('table', id='operator-promotion-table')
-    skils = soup.find('div', class_='mw-collapsible-content')
-    modeules = soup.find_all('table', class_='mrfz-wtable operator-module-prereq')
+        promotion = soup.find('table', id='operator-promotion-table')
+        skils = soup.find('div', class_='mw-collapsible-content')
+        modeules = soup.find_all('table', class_='mrfz-wtable operator-module-prereq')
 
-    promotion_tds = promotion.find_all('td')
-    promotion_resources = collect_data(promotion_tds, 1, True)
+        promotion_tds = promotion.find_all('td')
+        promotion_resources = collect_data(promotion_tds, 1, True)
 
-    skills_tds = skils.find_all('td')
-    skils_resourses = collect_data(skills_tds, 2, True)
+        skills_tds = skils.find_all('td')
+        skils_resourses = collect_data(skills_tds, 2, True)
 
 
-    modeules_resourses = {}
-    for enum, item in enumerate(modeules, start=1):
-        module_tds = item.find_all('td')
-        modeules_resourses[enum] = collect_data(module_tds, 1, False)
+        modeules_resourses = {}
+        for enum, item in enumerate(modeules, start=1):
+                module_tds = item.find_all('td')
+                modeules_resourses[enum] = collect_data(module_tds, 1, False)
 
-    data ={
-        'promotion_resourses': promotion_resources,
-        'skils_resourses': skils_resourses,
-        'modeules_resourses': modeules_resourses,
-    }
+        data ={
+            'promotion_resourses': promotion_resources,
+            'skils_resourses': skils_resourses,
+            'modeules_resourses': modeules_resourses,
+        }
+    except: return {}
 
     return data
